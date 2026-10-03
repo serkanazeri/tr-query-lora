@@ -4,6 +4,8 @@
 
 `training/generate_data.py` sabit `20261003` tohumuyla örnek üretir. Güncel sayılar `data/manifest.json` içindedir. Eğitim, doğrulama ve test cümle kalıpları ayrıdır. Soru birleşimindeki metrik, grup, dönem ve şehir değerleri split'ler arasında tekrar eder. Bu test parafraz dayanıklılığına dair dar bir sinyal verir; yeni müşteri şeması için kanıt vermez.
 
+`data/challenge.jsonl` ayrıca 12 doğal Türkçe soruyu ayrı tutar. Bu sorular eğitim ve sentetik test cümleleriyle birebir çakışmaz; eş anlamlı dönem ve gruplama ifadeleri içerir. Küçük ve insan tarafından doğrulanmamış olduğu için sonuçları ayrı raporlanır.
+
 ## Eğitim
 
 `training/train.py` temel model ağırlıklarını dondurur; PEFT LoRA'yı `q_proj` ve `v_proj` üzerine `r=8`, `alpha=16`, dropout `0.05` ile ekler. Varsayılan 240 optimizasyon adımı ve sabit seed kullanılır. 4 bit kuantizasyon yoktur. Chat template ile yalnızca model cevabı loss'a katılır; kullanıcı sorusu maskelenir. Uzun örnek sessizce kesilmez, hata verir.
@@ -11,6 +13,11 @@
 ## Aynı koşullu karşılaştırma
 
 `training/evaluate.py` test split'ini önce temel modelle, sonra aynı temele takılmış adapterla yürütür. İki koşulda aynı soru, chat template, `max_new_tokens=120` ve deterministik çözümleme kullanılır. Rapor şu ölçümleri içerir:
+
+```bash
+.venv/bin/python training/evaluate.py --limit 96
+.venv/bin/python training/evaluate.py --dataset data/challenge.jsonl --limit 12 --output artifacts/challenge-evaluation.json
+```
 
 | Ölçüm | Anlamı | Sınırı |
 | --- | --- | --- |

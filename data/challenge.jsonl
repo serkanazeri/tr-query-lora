@@ -1,0 +1,12 @@
+{"question":"Geçen 30 gündeki geciken sipariş adedini şehir bazında verir misin?","plan":{"metric":"delayed_count","group_by":"city","period":"last_30_days","city":"all"}}
+{"question":"Ankara'nın tüm zamanlardaki cirosu kaç TL?","plan":{"metric":"revenue","group_by":"none","period":"all","city":"Ankara"}}
+{"question":"İzmir şubelerinin ortalama teslimat süresi nedir?","plan":{"metric":"delivery_days","group_by":"branch","period":"all","city":"İzmir"}}
+{"question":"İstanbul'da son otuz gün kaç sipariş aldık?","plan":{"metric":"order_count","group_by":"none","period":"last_30_days","city":"İstanbul"}}
+{"question":"Toplam siparişleri şehir şehir karşılaştır.","plan":{"metric":"order_count","group_by":"city","period":"all","city":"all"}}
+{"question":"Son 30 gündeki satış tutarını şubelere ayır.","plan":{"metric":"revenue","group_by":"branch","period":"last_30_days","city":"all"}}
+{"question":"Ankara'da geciken sipariş sayısı şubelere göre nasıl dağılıyor?","plan":{"metric":"delayed_count","group_by":"branch","period":"all","city":"Ankara"}}
+{"question":"İstanbul teslimatları ortalama kaç gün sürdü?","plan":{"metric":"delivery_days","group_by":"none","period":"all","city":"İstanbul"}}
+{"question":"İzmir'de geçtiğimiz 30 günün cirosu nedir?","plan":{"metric":"revenue","group_by":"none","period":"last_30_days","city":"İzmir"}}
+{"question":"Tüm siparişlerin şubelere dağılımını göster.","plan":{"metric":"order_count","group_by":"branch","period":"all","city":"all"}}
+{"question":"Şehirlere göre ortalama teslimat günlerini listeler misin?","plan":{"metric":"delivery_days","group_by":"city","period":"all","city":"all"}}
+{"question":"İzmir'deki siparişlerin sayısını şubelere ayır.","plan":{"metric":"order_count","group_by":"branch","period":"all","city":"İzmir"}}

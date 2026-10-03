@@ -2,7 +2,7 @@
 
 ## Planlanan yayın akışı
 
-1. Yerel eğitim ve 96 soruluk test raporunu doğrula.
+1. Yerel eğitim, 96 soruluk sentetik test ve ayrı 12 soruluk doğal ifade raporunu doğrula.
 2. `python training/prepare_upload.py` ile Cloudflare LoRA kısıtlarını denetle ve ayrı yükleme klasörünü üret: desteklenen model, `r=8`, adapter dosyaları `<300 MB`, `adapter_config.json` içinde `model_type=gemma`.
 3. `wrangler ai finetune create @cf/google/gemma-2b-it-lora <name> artifacts/cloudflare-upload` ile adapterı yükle. Üretilen kimliği `LORA_ID` olarak kaydet.
 4. Ayrı `tr-query` D1 veritabanını oluştur ve sentetik veri migration'ını uygula. **Tamamlandı:** uzak veritabanında 18 sipariş doğrulandı.

@@ -64,6 +64,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", default=MODEL_ID)
     parser.add_argument("--adapter", type=Path, default=ROOT / "artifacts" / "lora")
+    parser.add_argument("--dataset", type=Path, default=ROOT / "data" / "test.jsonl")
     parser.add_argument("--limit", type=int, default=96)
     parser.add_argument("--output", type=Path, default=ROOT / "artifacts" / "evaluation.json")
     args = parser.parse_args()
@@ -73,7 +74,7 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(args.model)
     base = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=torch.float16 if device != "cpu" else torch.float32).to(device)
     base.eval()
-    rows = [json.loads(line) for line in (ROOT / "data" / "test.jsonl").read_text(encoding="utf-8").splitlines()][:args.limit]
+    rows = [json.loads(line) for line in args.dataset.read_text(encoding="utf-8").splitlines()][:args.limit]
     connection = sqlite3.connect(":memory:")
     connection.executescript((ROOT / "migrations" / "0001_init.sql").read_text(encoding="utf-8"))
     base_result = evaluate_model(base, tokenizer, rows, connection, device)
@@ -82,7 +83,7 @@ def main():
     tuned_result = evaluate_model(tuned, tokenizer, rows, connection, device)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps({
-        "base_model": args.model, "adapter": str(args.adapter), "test_split": "data/test.jsonl",
+        "base_model": args.model, "adapter": str(args.adapter), "test_split": str(args.dataset),
         "synthetic_data": True, "base": base_result, "lora": tuned_result,
     }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"base": {k: v for k, v in base_result.items() if k != "details"},

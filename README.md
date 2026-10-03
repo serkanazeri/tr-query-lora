@@ -58,6 +58,7 @@ python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 .venv/bin/python training/train.py --steps 240
 .venv/bin/python training/evaluate.py --limit 96
+.venv/bin/python training/evaluate.py --dataset data/challenge.jsonl --limit 12 --output artifacts/challenge-evaluation.json
 .venv/bin/python training/prepare_upload.py
 ```
 

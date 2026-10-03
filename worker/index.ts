@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { compilePlan, parsePlan, SYSTEM_PROMPT } from '../shared/plan';
+import { compilePlan, parseFirstPlan, SYSTEM_PROMPT } from '../shared/plan';
 
 type Env = {
   AI: { run: (model: string, options: Record<string, unknown>) => Promise<{ response?: string }> };
@@ -40,22 +40,24 @@ app.post('/api/compare', async (c) => {
     return c.json({ error: 'Demo kotası kontrol edilemedi.' }, 503);
   }
 
-  const prompt = `${SYSTEM_PROMPT}\nSoru: ${question}`;
+  // Match the Gemma chat template used by training/evaluate.py exactly.
+  const prompt = `<bos><start_of_turn>user\n${SYSTEM_PROMPT}\nSoru: ${question}<end_of_turn>\n<start_of_turn>model\n`;
   const infer = async (adapter: boolean) => {
     const started = performance.now();
     let raw = '';
     try {
       const output = await c.env.AI.run(c.env.BASE_MODEL, {
-        messages: [{ role: 'user', content: prompt }],
+        prompt,
+        raw: true,
         max_tokens: 120,
         temperature: 0,
         ...(adapter ? { lora: c.env.LORA_ID } : {}),
       });
       raw = output.response ?? '';
-      const plan = parsePlan(raw);
+      const { plan, format_warning } = parseFirstPlan(raw);
       const { sql, binds } = compilePlan(plan, c.env.REFERENCE_DATE);
       const rows = await c.env.DB.prepare(sql).bind(...binds).all();
-      return { ok: true, raw, plan, sql, rows: rows.results, latency_ms: Math.round(performance.now() - started) };
+      return { ok: true, raw, plan, format_warning, sql, rows: rows.results, latency_ms: Math.round(performance.now() - started) };
     } catch (error) {
       return { ok: false, raw, error: error instanceof Error ? error.message : 'Model veya veritabanı hatası', latency_ms: Math.round(performance.now() - started) };
     }

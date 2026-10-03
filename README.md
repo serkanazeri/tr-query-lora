@@ -2,9 +2,18 @@
 
 **Türkçe analitik sorular için ölçülebilir bir LoRA deneyi.** Kurgusal bir perakende operasyonundaki soruları dört alanlı sorgu planına çevirir. Uygulama aynı Gemma 2B temel modelini LoRA adapterı olmadan ve adapterla çalıştırır; planı, bu plandan derlenen salt okunur SQL'i ve sentetik verideki sonucu yan yana gösterir.
 
-> **Durum:** Yerel uygulama ve eğitim hattı hazır. Eğitilmiş adapter ve herkese açık demo henüz doğrulanmadı. Canlı URL, model değerlendirme rakamları ve dağıtım kanıtı ancak gerçek eğitim ve yayın sonrasında eklenecek.
+> **Canlı demo:** [tr-query-lora.serkanazeri.workers.dev](https://tr-query-lora.serkanazeri.workers.dev) · [GitHub deposu](https://github.com/serkanazeri/tr-query-lora). Standart LoRA adapterı yerel M4 Pro üzerinde eğitildi ve Cloudflare Workers AI'ya yüklendi. Üç gerçek soruda canlı çıkarım ile D1 sonuçları doğrulandı. Ölçümler ve gözlenen hatalar [sonuç raporunda](docs/results.md).
 
-[English README](README.en.md) · [Mimari](docs/architecture.md) · [Değerlendirme](docs/evaluation.md) · [Dağıtım ve maliyet](docs/operations.md)
+[English README](README.en.md) · [Mimari](docs/architecture.md) · [Değerlendirme](docs/evaluation.md) · [Sonuçlar](docs/results.md) · [Dağıtım ve maliyet](docs/operations.md)
+
+## Ölçülen sonuç
+
+| Küme | Temel model | Yayındaki LoRA |
+| --- | ---: | ---: |
+| Ayrı cümle kalıplı 96 sentetik soru, tam plan | 0/96 | 96/96 |
+| Eğitimde kullanılmamış 12 yeni audit sorusu, tam plan | 0/12 | 7/12 |
+
+LoRA, canlı demodaki üç örnekte de doğru plan ve D1 sonucu verdi. Audit kümesi küçük ve bağımsız insan incelemesinden geçmedi; 7/12 sonucu açık bir sınırlamadır. İki eğitim denemesi, eski hatalar ve tekil çıktılar [sonuç raporunda](docs/results.md).
 
 ## Neden bu proje?
 
@@ -14,11 +23,11 @@ RAGNA retrieval ve kaynaklı yanıtı, ServiceOps insan onaylı ajan yürütmesi
 
 1. Ziyaretçi Türkçe bir operasyon sorusu yazar veya üç örnekten birini seçer.
 2. Aynı soru temel modele ve LoRA adapterlı modele gönderilir.
-3. Her çıktı katı JSON şemasından geçirilir. Modelden gelen SQL yürütülmez.
+3. Çıktı JSON nesnesiyle başlıyorsa ilk tamamlanmış nesne katı şemadan geçirilir. Ardından gelen metin uyarıyla ve ham çıktı olarak gösterilir. Modelden gelen SQL yürütülmez.
 4. Geçerli plan, uygulamanın sabit ve parametreli SQL derleyicisinden geçer; D1 sorgusu sonucu döner.
 5. Kullanıcı iki modelin planını, sorgusunu, sonucunu ve gecikmesini görür.
 
-Demo verisi 18 sentetik siparişten oluşur. Dönem kıyasının referans tarihi **30 Eylül 2026** olarak sabitlenmiştir; zaman geçtikçe sonuçların kayması önlenir. Şehir, metrik, grup ve dönem dışındaki sorular bu sürümün kapsamı dışındadır. Geçersiz çıktı açıkça hata olarak gösterilir; sessizce doğru cevaba çevrilmez.
+Demo verisi 18 sentetik siparişten oluşur. Dönem kıyasının referans tarihi **30 Eylül 2026** olarak sabitlenmiştir; zaman geçtikçe sonuçların kayması önlenir. Şehir, metrik, grup ve dönem dışındaki sorular bu sürümün kapsamı dışındadır. Geçersiz plan açıkça hata olarak gösterilir; planın anlamsal doğruluğu garanti edilmez.
 
 ## Mimarinin kısa özeti
 
@@ -48,7 +57,7 @@ npm run db:local
 npm run preview
 ```
 
-`http://localhost:8789` açılır. Adapter yüklenene kadar arayüz çalışır, karşılaştırma düğmesi dürüstçe devre dışıdır. `wrangler dev` AI binding'i uzaktaki servise bağlar; model çağrıları ücretsiz kotayı tüketebilir. Yerel veritabanı işlemleri yalnızca yerel D1'i değiştirir.
+`http://localhost:8789` açılır. Yayımlanmış `LORA_ID` yapılandırılmıştır. `wrangler dev` AI binding'i uzaktaki servise bağlar; model çağrıları ücretsiz kotayı tüketebilir. Yerel veritabanı işlemleri yalnızca yerel D1'i değiştirir.
 
 Eğitim verisini yeniden üretmek için:
 
@@ -56,10 +65,11 @@ Eğitim verisini yeniden üretmek için:
 python3 training/generate_data.py
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
-.venv/bin/python training/train.py --steps 240
-.venv/bin/python training/evaluate.py --limit 96
-.venv/bin/python training/evaluate.py --dataset data/challenge.jsonl --limit 12 --output artifacts/challenge-evaluation.json
-.venv/bin/python training/prepare_upload.py
+.venv/bin/python training/train.py --steps 320 --output artifacts/lora-v2
+.venv/bin/python training/evaluate.py --adapter artifacts/lora-v2 --limit 96
+.venv/bin/python training/evaluate.py --adapter artifacts/lora-v2 --dataset data/challenge.jsonl --limit 12 --output artifacts/challenge-v2-evaluation.json
+.venv/bin/python training/evaluate.py --adapter artifacts/lora-v2 --dataset data/audit.jsonl --limit 12 --output artifacts/audit-v2-evaluation.json
+.venv/bin/python training/prepare_upload.py --adapter artifacts/lora-v2 --output artifacts/cloudflare-upload-v2
 ```
 
 Gemma model dosyaları için Hugging Face hesabınızda Google'ın kullanım koşulları kabul edilmiş ve terminal oturumu açılmış olmalıdır. Tokenı kaynak koda, komut argümanına veya Git'e koymayın. `prepare_upload.py`, değerlendirme için kullanılan özgün PEFT adapterını değiştirmeden Cloudflare'ın beklediği iki dosyayı hazırlar. Mac model dosyalarını indirirken birkaç GB boş alan gerekir. `artifacts/` ve `.venv/` Git dışında tutulur.

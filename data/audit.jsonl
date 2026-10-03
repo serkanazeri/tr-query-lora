@@ -1,0 +1,12 @@
+{"question":"Son otuz gündeki gecikmiş siparişler şubelere nasıl dağılmış?","plan":{"metric":"delayed_count","group_by":"branch","period":"last_30_days","city":"all"}}
+{"question":"Her şehirde toplam kaç sipariş verilmiş?","plan":{"metric":"order_count","group_by":"city","period":"all","city":"all"}}
+{"question":"İstanbul şubelerinin cirolarını ayrı ayrı göster.","plan":{"metric":"revenue","group_by":"branch","period":"all","city":"İstanbul"}}
+{"question":"Son 30 günün Ankara teslimatları ortalama kaç gün sürdü?","plan":{"metric":"delivery_days","group_by":"none","period":"last_30_days","city":"Ankara"}}
+{"question":"İzmir'de gecikmiş siparişlerin sayısını şube kırılımında göster.","plan":{"metric":"delayed_count","group_by":"branch","period":"all","city":"İzmir"}}
+{"question":"Bütün dönem için şehirlere göre ciro dağılımı nedir?","plan":{"metric":"revenue","group_by":"city","period":"all","city":"all"}}
+{"question":"Son 30 günde toplam sipariş adedi kaç?","plan":{"metric":"order_count","group_by":"none","period":"last_30_days","city":"all"}}
+{"question":"Ankara'nın toplam sipariş adedini hesapla.","plan":{"metric":"order_count","group_by":"none","period":"all","city":"Ankara"}}
+{"question":"Son otuz gün İstanbul'un ciro toplamını bul.","plan":{"metric":"revenue","group_by":"none","period":"last_30_days","city":"İstanbul"}}
+{"question":"Şube şube ortalama teslimat süresi kaç gün?","plan":{"metric":"delivery_days","group_by":"branch","period":"all","city":"all"}}
+{"question":"Tüm zamanlarda gecikmiş siparişlerin sayısı kaç?","plan":{"metric":"delayed_count","group_by":"none","period":"all","city":"all"}}
+{"question":"İzmir'de son otuz günde ortalama teslimat gününü şehir kırılımında ver.","plan":{"metric":"delivery_days","group_by":"city","period":"last_30_days","city":"İzmir"}}

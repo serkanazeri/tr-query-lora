@@ -23,6 +23,30 @@ export function parsePlan(raw: string): QueryPlan {
   return planSchema.parse(JSON.parse(trimmed));
 }
 
+export function parseFirstPlan(raw: string): { plan: QueryPlan; format_warning?: string } {
+  const text = raw.trim();
+  if (!text.startsWith('{')) throw new Error('Model çıktısı JSON planıyla başlamalı.');
+  let depth = 0;
+  let quoted = false;
+  let escaped = false;
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    if (quoted) {
+      if (escaped) escaped = false;
+      else if (char === '\\') escaped = true;
+      else if (char === '"') quoted = false;
+    } else if (char === '"') quoted = true;
+    else if (char === '{') depth++;
+    else if (char === '}' && --depth === 0) {
+      const plan = parsePlan(text.slice(0, i + 1));
+      return text.slice(i + 1).trim()
+        ? { plan, format_warning: 'Model planın ardından ek metin üretti; yalnızca ilk doğrulanmış plan kullanıldı.' }
+        : { plan };
+    }
+  }
+  throw new Error('Model tamamlanmış bir JSON planı üretmedi.');
+}
+
 export function compilePlan(plan: QueryPlan, referenceDate: string) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(referenceDate)) {
     throw new Error('Geçersiz referans tarihi.');

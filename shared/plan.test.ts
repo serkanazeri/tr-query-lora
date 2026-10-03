@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { compilePlan, parsePlan } from './plan';
+import { compilePlan, parseFirstPlan, parsePlan } from './plan';
 
 describe('model plan boundary', () => {
   it('rejects prose, extra keys and arbitrary SQL', () => {
@@ -14,5 +14,14 @@ describe('model plan boundary', () => {
     expect(query.sql).toContain('city = ?');
     expect(query.binds).toEqual(['2026-09-30', '2026-09-30', 'Ankara']);
     expect(query.sql).not.toContain('Ankara');
+  });
+
+  it('uses only a leading complete validated plan and reports trailing generation', () => {
+    const raw = '{"metric":"delayed_count","group_by":"branch","period":"last_30_days","city":"all"}\nextra {"metric":"revenue"}';
+    const parsed = parseFirstPlan(raw);
+    expect(parsed.plan.metric).toBe('delayed_count');
+    expect(parsed.format_warning).toBeTruthy();
+    expect(() => parseFirstPlan('note ' + raw)).toThrow();
+    expect(() => parseFirstPlan('{"metric":"order_count","group_by":"none","period":"all","city":"all","sql":"DROP TABLE orders"} trailing')).toThrow();
   });
 });

@@ -1,11 +1,13 @@
 {
   "seed": 20261003,
+  "generation_version": 2,
   "counts": {
-    "train": 768,
+    "train": 960,
     "valid": 96,
     "test": 96
   },
   "synthetic": true,
   "human_reviewed": false,
-  "split_method": "held-out sentence frames; metric/group/period/city combinations recur"
+  "split_method": "held-out sentence frames; metric/group/period/city combinations recur",
+  "training_paraphrases": "192 additional grouping and period phrasings; no exact challenge question copied"
 }

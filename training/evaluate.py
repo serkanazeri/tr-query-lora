@@ -27,7 +27,14 @@ def generate(model, tokenizer, question, device):
     ).to(device)
     started = time.monotonic()
     with torch.inference_mode():
-        output = model.generate(prompt, max_new_tokens=120, do_sample=False, pad_token_id=tokenizer.eos_token_id)
+        output = model.generate(
+            prompt,
+            attention_mask=torch.ones_like(prompt),
+            max_new_tokens=120,
+            do_sample=False,
+            pad_token_id=tokenizer.eos_token_id,
+            eos_token_id=[tokenizer.eos_token_id, tokenizer.convert_tokens_to_ids('<end_of_turn>')],
+        )
     raw = tokenizer.decode(output[0][prompt.shape[-1]:], skip_special_tokens=True).strip()
     return raw, round((time.monotonic() - started) * 1000)
 

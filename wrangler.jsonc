@@ -18,7 +18,7 @@
   }],
   "vars": {
     "BASE_MODEL": "@cf/google/gemma-2b-it-lora",
-    "LORA_ID": "",
+    "LORA_ID": "tr-query-gemma2b-v2-20261003",
     "REFERENCE_DATE": "2026-09-30"
   }
 }

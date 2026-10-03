@@ -1,0 +1,3576 @@
+{
+  "base_model": "artifacts/base-model",
+  "adapter": "artifacts/lora-v2",
+  "test_split": "data/test.jsonl",
+  "synthetic_data": true,
+  "base": {
+    "count": 96,
+    "valid_plan_rate": 0.0,
+    "exact_plan_rate": 0.0,
+    "execution_accuracy": 0.0,
+    "latency_p50_ms": 1764,
+    "details": [
+      {
+        "question": "Son 30 günde İstanbul'daki satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"revenue\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1613,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İstanbul'daki ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|average(delayed_count)\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1667,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"all|Ankara|İstanbul|İzmir\"\n}\n```\n\nBu JSON sorgu planı, \"order_count\", \"delayed_count\", \"revenue\" ve \"delivery_days\" metriklerini, \"none\", \"branch\" ve \"city\" gruplarını ve \"all",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 3312,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İzmir'deki kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1779,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"all|Ankara|İstanbul|İzmir\"\n}\n```\n\nBu JSON sorgu planı, \"order_count\", \"delayed_count\", \"revenue\" ve \"delivery_days\" metriklerini, \"none\", \"branch\" ve \"city\" gruplarını ve \"all",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 3315,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"delivery_days\",\n  \"group_by\": \"none\",\n  \"period\": \"last_30_days\",\n  \"city\": \"all\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1484,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ankara'daki kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1738,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İstanbul'daki kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "**JSON sorgu planı:**\n\n```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```\n\n**Sonuç:**\n\nİstanbul'da kaç sipariş olduğunu belirlemek için metriklerin \"order_count\", \"delayed_count\" ve \"delivery_days\" değerlerini kullanabiliriz. Bu metrik",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 3310,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İzmir'deki satış tutarını nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"revenue\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1503,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"revenue\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1477,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"all|Ankara|İstanbul|İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2112,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ankara'daki kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1749,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde Ankara'daki kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1735,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İstanbul'daki kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "**JSON Sorgu Planı:**\n\n```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```\n\n**Sonuç:**\n\nİstanbul'da 30 gün boyunca kaç sipariş olduğu belirlenmez.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2631,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1270,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İzmir'deki kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1775,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde Ankara'daki satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1748,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"filters\": {\n    \"city\": \"İstanbul\"\n  }\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2002,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İzmir'deki satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\":\"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\":\"city\",\n  \"period\":\"last_30_days\",\n  \"city\":\"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1648,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İzmir'deki ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|average(delayed_count)\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1661,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İzmir'deki kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```\n\nİzmir'deki sipariş sayısı 10'tur.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2172,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İzmir'deki satış tutarını nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "{\"metric\":\"order_count|delayed_count|revenue|delivery_days\",\"group_by\":\"city\",\"period\":\"last_30_days\",\"city\":\"İzmir\"}\n\nİzmir'deki satış tutarını 30 gün önceki dönemdeki satış sayısıdır.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1734,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İzmir'deki kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1784,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İzmir'deki satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"revenue\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1455,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde satış tutarını nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"revenue\",\n  \"group_by\": \"none\",\n  \"period\": \"last_30_days\",\n  \"city\": \"all\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1420,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ankara'daki satış tutarını nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\":\"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\":\"city\",\n  \"period\":\"last_30_days\",\n  \"city\":\"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1631,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"filters\": {\n    \"city\": \"Ankara\"\n  }\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1710,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"branch|city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```\n\nBu JSON sorgu planı, \"order_count\", \"delayed_count\", \"revenue\" ve \"delivery_days\" metriklerini, \"branch\" ve \"city\" gruplarını ve \"last_30_days\" dönemini kullanarak İstanbul'daki kaç",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 3330,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ankara'daki kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "**JSON sorgu planı:**\n\n```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"Ankara\"\n}\n```\n\n**Cevap:**\n\nAnkara'daki sipariş sayısı 10'tur.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2606,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İzmir'deki ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1771,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"branch|city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1811,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki satış tutarını nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"revenue\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1456,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İstanbul'daki kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1764,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İstanbul'daki kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\":\"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\":\"branch|city\",\n  \"period\":\"last_30_days\",\n  \"city\":\"İstanbul\"\n}\n```\n\nBu JSON sorgu planı, İstanbul'daki sipariş sayısını ve geciktiğini belirlemek için kullanılabilir.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2422,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İstanbul'daki ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|average_delivery_days\",\n  \"group_by\": \"branch|city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1705,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1758,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İzmir'deki satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"revenue\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1633,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İzmir'deki ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|average_delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1868,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"revenue\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1366,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İzmir'deki kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\":\"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\":\"city\",\n  \"period\":\"last_30_days\",\n  \"city\":\"İzmir\"\n}\n```\n\nBu JSON sorgu planı, İzmir'deki sipariş sayısını \"order_count\" ve \"delayed_count\" metriklerini, \"revenue\" ve \"delivery_days\" metriklerini ve \"period\" metrikini \"last_30_days\" değerine sahip olduğunu göster",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 3499,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"all|Ankara|İstanbul|İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2099,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde Ankara'daki ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"Ankara\",\n  \"value_filter\": \"city='Ankara'\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2227,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İzmir'deki kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "**JSON Sorgu Planı:**\n\n```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```\n\n**Sonuç:**\n\nİzmir'deki kaç sipariş olduğunu belirlemek için \"city\" parametresi \"İzmir\" değerine sahip olan \"order_count\", \"delayed_count\", \"revenue\" ve \"delivery_days\" met",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 3313,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İzmir'deki kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1766,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ankara'daki satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1751,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İstanbul'daki ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\":\"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\":\"branch|city\",\n  \"period\":\"last_30_days\",\n  \"city\":\"İstanbul\"\n}\n```\n\nBu JSON sorgu planı, İstanbul'daki ortalama kaç günde teslim edildiğini belirlemek için kullanılır.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2364,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"all|Ankara|İstanbul|İzmir\"\n}\n```\n\nBu JSON sorgu planı, \"order_count\", \"delayed_count\", \"revenue\" ve \"delivery_days\" metriklerini, \"none\", \"branch\" ve \"city\" gruplarını ve \"all",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 3322,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde Ankara'daki ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|average(delayed_count)\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1636,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"delivery_days\",\n  \"group_by\": \"branch\",\n  \"period\": \"last_30_days\",\n  \"city\": \"all\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1474,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde Ankara'daki satış tutarını nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\":\"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\":\"city\",\n  \"period\":\"last_30_days\",\n  \"city\":\"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1636,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ankara'daki ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|average(delayed_count)\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1631,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ankara'daki satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1741,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İstanbul'daki satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"revenue\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1447,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İstanbul'daki kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"branch|city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```\n\nİstanbul'da 30 gün boyunca kaç sipariş olduğu belirlenmektedir.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2310,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"delivery_days\",\n  \"group_by\": \"branch\",\n  \"period\": \"last_30_days\",\n  \"city\": \"all\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1466,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\":\"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\":\"none|branch|city\",\n  \"period\":\"all|last_30_days\",\n  \"city\":\"all|Ankara|İstanbul|İzmir\"\n}\n```\n\nBu JSON sorgu planı, \"order_count\", \"delayed_count\", \"revenue\" ve \"delivery_days\" metriklerini, \"none\", \"branch\" ve \"city\" gruplarını ve \"all\" dönemini kullan",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 3304,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İstanbul'daki satış tutarını nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\":\"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\":\"branch|city\",\n  \"period\":\"last_30_days\",\n  \"city\":\"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1706,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"all|Ankara|İstanbul|İzmir\"\n}\n```\n\nBu JSON sorgu planı, \"order_count\", \"delayed_count\", \"revenue\" ve \"delivery_days\" metriklerini, \"none\", \"branch\" ve \"city\" gruplarını ve \"all",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 3315,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ankara'daki ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|average_delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1636,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İstanbul'daki kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"branch|city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1810,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde Ankara'daki ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|average(delayed_count)\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1637,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İzmir'deki kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1772,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İzmir'deki kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1771,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde Ankara'daki satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1758,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İzmir'deki kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1761,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"all|Ankara|İstanbul|İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2101,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde Ankara'daki kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1755,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İzmir'deki ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\":\"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\":\"city\",\n  \"period\":\"last_30_days\",\n  \"city\":\"İzmir\"\n}\n```\n\nBu JSON sorgu planı, İzmir'in ortalama teslimat gününü belirlemek için kullanılmaktadır.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2324,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"revenue\",\n  \"group_by\": \"branch\",\n  \"period\": \"last_30_days\",\n  \"city\": \"all\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1417,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İzmir'deki kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "**JSON sorgu planı:**\n\n```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```\n\n**Sonuç:**\n\nİzmir'deki kaç sipariş olduğu belirlenmez.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2490,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"revenue\",\n  \"group_by\": \"branch\",\n  \"period\": \"last_30_days\",\n  \"city\": \"all\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1415,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"all|Ankara|İstanbul|İzmir\"\n}\n```\n\nBu JSON sorgu planı, \"order_count\", \"delayed_count\", \"revenue\" ve \"delivery_days\" metriklerini, \"none\", \"branch\" ve \"city\" gruplarını ve \"all\" döne",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 3357,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ankara'daki ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\":\"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\":\"city\",\n  \"period\":\"last_30_days\",\n  \"city\":\"Ankara\"\n}\n```\n\nBu JSON sorgu planı, \"Ankara\" şehirinin ortalama teslimat gün sayısını hesaplamak için kullanılabilir.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2327,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde Ankara'daki kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1741,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"all|Ankara|İstanbul|İzmir\"\n}\n```\n\nBu JSON sorgu planı, \"order_count\", \"delayed_count\", \"revenue\" ve \"delivery_days\" metriklerini, \"none\", \"branch\" ve \"city\" gruplarını ve \"all",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 3438,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde Ankara'daki kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"Ankara\"\n}\n```\n\nBu JSON sorgu planı, \"order_count\", \"delayed_count\", \"revenue\" ve \"delivery_days\" metriklerini, \"none\", \"branch\" ve \"city\" gruplarını ve \"all\" dönemini kullanarak Ankara'daki",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 3335,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"all|Ankara|İstanbul|İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2107,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde Ankara'daki kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1746,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "{\"metric\":\"order_count\",\"group_by\":\"none\",\"period\":\"last_30_days\",\"city\":\"Ankara\"}\n\nBu soruda, \"order_count\" metrikinin \"Ankara\" şehirindeki sipariş sayısını hesaplamak için kullanılmaktadır.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1665,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İstanbul'daki satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"revenue\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1444,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İzmir'deki kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1774,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ankara'daki kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\":\"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\":\"city\",\n  \"period\":\"last_30_days\",\n  \"city\":\"Ankara\"\n}\n```\n\nBu soruyu JSON sorgu planına dönüştürmek için, değerleri \"Ankara\" olarak belirleyelim.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2293,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İzmir'deki satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"revenue\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1441,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|average(delayed_count)\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"filters\": {\n    \"city\": \"İstanbul\"\n  }\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1912,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"branch|city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1814,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "JSON sorgu planına göre, \"order_count\" metrikinin geciktiği şu değerdir:\n\n```json\n\"order_count|delayed_count|revenue|delivery_days\"\n```\n\nBu, \"order_count\" metrikinin \"delayed_count\" ve \"delivery_days\" değerlerini içeren bir değeri ifade eder.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2189,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İzmir'deki ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|average_delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1683,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "İzmir'deki ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|average_delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İzmir\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1684,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"branch|city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1928,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde Ankara'daki kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"Ankara\",\n  \"value\": 10\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2156,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"branch|city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1900,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Satış tutarını nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "JSON sorgu planına göre satış tutarı \"revenue\" metrikidir.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 666,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"revenue\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1226,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|average(delayed_count)\",\n  \"group_by\": \"branch|city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"İstanbul\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1742,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ankara'daki kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"city\",\n  \"period\": \"last_30_days\",\n  \"city\": \"Ankara\"\n}\n```",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 1774,
+        "failure": "Not bare JSON"
+      },
+      {
+        "question": "Ankara'daki kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "**JSON Sorgu Planı:**\n\n```json\n{\n  \"metric\": \"order_count|delayed_count|revenue|delivery_days\",\n  \"group_by\": \"none|branch|city\",\n  \"period\": \"all|last_30_days\",\n  \"city\": \"Ankara\"\n}\n```\n\n**Sonuç:**\n\nAnkara'da 12 sipariş bulunmaktadır.",
+        "parsed": null,
+        "valid_json_plan": false,
+        "exact_plan": false,
+        "execution_equal": false,
+        "latency_ms": 2626,
+        "failure": "Not bare JSON"
+      }
+    ]
+  },
+  "lora": {
+    "count": 96,
+    "valid_plan_rate": 1.0,
+    "exact_plan_rate": 1.0,
+    "execution_accuracy": 1.0,
+    "latency_p50_ms": 868,
+    "details": [
+      {
+        "question": "Son 30 günde İstanbul'daki satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"branch\",\"metric\":\"revenue\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 905,
+        "failure": null
+      },
+      {
+        "question": "İstanbul'daki ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"city\",\"metric\":\"delivery_days\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 829,
+        "failure": null
+      },
+      {
+        "question": "Kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"branch\",\"metric\":\"order_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 784,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İzmir'deki kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"city\",\"metric\":\"delayed_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 968,
+        "failure": null
+      },
+      {
+        "question": "Kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"city\",\"metric\":\"delayed_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 805,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"none\",\"metric\":\"delivery_days\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 941,
+        "failure": null
+      },
+      {
+        "question": "Ankara'daki kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"branch\",\"metric\":\"delayed_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 801,
+        "failure": null
+      },
+      {
+        "question": "İstanbul'daki kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"none\",\"metric\":\"order_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 811,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İzmir'deki satış tutarını nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"none\",\"metric\":\"revenue\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 920,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"city\",\"metric\":\"revenue\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 899,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"city\",\"metric\":\"order_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 931,
+        "failure": null
+      },
+      {
+        "question": "Ankara'daki kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"city\",\"metric\":\"delayed_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 816,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde Ankara'daki kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"city\",\"metric\":\"delayed_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 936,
+        "failure": null
+      },
+      {
+        "question": "İstanbul'daki kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"city\",\"metric\":\"order_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 825,
+        "failure": null
+      },
+      {
+        "question": "Ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"city\",\"metric\":\"delivery_days\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 785,
+        "failure": null
+      },
+      {
+        "question": "İzmir'deki kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"city\",\"metric\":\"delayed_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 821,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde Ankara'daki satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"branch\",\"metric\":\"revenue\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 868,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"city\",\"metric\":\"delayed_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 966,
+        "failure": null
+      },
+      {
+        "question": "İzmir'deki satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"city\",\"metric\":\"revenue\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 748,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İzmir'deki ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"city\",\"metric\":\"delivery_days\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 971,
+        "failure": null
+      },
+      {
+        "question": "İzmir'deki kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"branch\",\"metric\":\"order_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 805,
+        "failure": null
+      },
+      {
+        "question": "İzmir'deki satış tutarını nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"none\",\"metric\":\"revenue\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 762,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İzmir'deki kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"branch\",\"metric\":\"order_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 962,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İzmir'deki satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"branch\",\"metric\":\"revenue\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 907,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde satış tutarını nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"none\",\"metric\":\"revenue\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 868,
+        "failure": null
+      },
+      {
+        "question": "Ankara'daki satış tutarını nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"none\",\"metric\":\"revenue\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 724,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"city\",\"metric\":\"delivery_days\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 938,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"none\",\"metric\":\"order_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 954,
+        "failure": null
+      },
+      {
+        "question": "Ankara'daki kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"none\",\"metric\":\"order_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 791,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İzmir'deki ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"none\",\"metric\":\"delivery_days\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 954,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"branch\",\"metric\":\"delayed_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 959,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki satış tutarını nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"none\",\"metric\":\"revenue\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 898,
+        "failure": null
+      },
+      {
+        "question": "İstanbul'daki kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"city\",\"metric\":\"delayed_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 813,
+        "failure": null
+      },
+      {
+        "question": "İstanbul'daki kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"none\",\"metric\":\"delayed_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 802,
+        "failure": null
+      },
+      {
+        "question": "İstanbul'daki ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"branch\",\"metric\":\"delivery_days\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 810,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"city\",\"metric\":\"order_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 949,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İzmir'deki satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"city\",\"metric\":\"revenue\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 904,
+        "failure": null
+      },
+      {
+        "question": "İzmir'deki ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"city\",\"metric\":\"delivery_days\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 813,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"city\",\"metric\":\"revenue\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 885,
+        "failure": null
+      },
+      {
+        "question": "İzmir'deki kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"none\",\"metric\":\"delayed_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 818,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"branch\",\"metric\":\"delayed_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 922,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde Ankara'daki ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"none\",\"metric\":\"delivery_days\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 918,
+        "failure": null
+      },
+      {
+        "question": "İzmir'deki kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"city\",\"metric\":\"order_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 802,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İzmir'deki kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"none\",\"metric\":\"order_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 950,
+        "failure": null
+      },
+      {
+        "question": "Ankara'daki satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"branch\",\"metric\":\"revenue\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 727,
+        "failure": null
+      },
+      {
+        "question": "İstanbul'daki ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"none\",\"metric\":\"delivery_days\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 803,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"none\",\"metric\":\"delayed_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 918,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde Ankara'daki ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"branch\",\"metric\":\"delivery_days\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 929,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"branch\",\"metric\":\"delivery_days\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 933,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde Ankara'daki satış tutarını nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"none\",\"metric\":\"revenue\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 858,
+        "failure": null
+      },
+      {
+        "question": "Ankara'daki ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"city\",\"metric\":\"delivery_days\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 795,
+        "failure": null
+      },
+      {
+        "question": "Ankara'daki satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"city\",\"metric\":\"revenue\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 736,
+        "failure": null
+      },
+      {
+        "question": "İstanbul'daki satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"city\",\"metric\":\"revenue\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 749,
+        "failure": null
+      },
+      {
+        "question": "İstanbul'daki kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"branch\",\"metric\":\"order_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 800,
+        "failure": null
+      },
+      {
+        "question": "Ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"branch\",\"metric\":\"delivery_days\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 778,
+        "failure": null
+      },
+      {
+        "question": "Ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"none\",\"metric\":\"delivery_days\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 783,
+        "failure": null
+      },
+      {
+        "question": "İstanbul'daki satış tutarını nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"none\",\"metric\":\"revenue\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 821,
+        "failure": null
+      },
+      {
+        "question": "Kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"city\",\"metric\":\"order_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 796,
+        "failure": null
+      },
+      {
+        "question": "Ankara'daki ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"branch\",\"metric\":\"delivery_days\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 790,
+        "failure": null
+      },
+      {
+        "question": "İstanbul'daki kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"branch\",\"metric\":\"delayed_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 817,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde Ankara'daki ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"city\",\"metric\":\"delivery_days\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 934,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İzmir'deki kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"none\",\"metric\":\"delayed_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 951,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İzmir'deki kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"city\",\"metric\":\"order_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 961,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde Ankara'daki satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"city\",\"metric\":\"revenue\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 886,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İzmir'deki kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"branch\",\"metric\":\"delayed_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 971,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde kaç siparişin geciktiğini şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"city\",\"metric\":\"delayed_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 951,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde Ankara'daki kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"branch\",\"metric\":\"order_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 938,
+        "failure": null
+      },
+      {
+        "question": "İzmir'deki ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"none\",\"metric\":\"delivery_days\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 831,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"branch\",\"metric\":\"revenue\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 876,
+        "failure": null
+      },
+      {
+        "question": "İzmir'deki kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"none\",\"metric\":\"order_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 812,
+        "failure": null
+      },
+      {
+        "question": "Satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"branch\",\"metric\":\"revenue\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 729,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"none\",\"metric\":\"order_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 969,
+        "failure": null
+      },
+      {
+        "question": "Ankara'daki ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"none\",\"metric\":\"delivery_days\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 805,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde Ankara'daki kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"branch\",\"metric\":\"delayed_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 939,
+        "failure": null
+      },
+      {
+        "question": "Kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"branch\",\"metric\":\"delayed_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 783,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde Ankara'daki kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"none\",\"metric\":\"order_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 932,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"branch\",\"metric\":\"order_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 922,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde Ankara'daki kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"city\",\"metric\":\"order_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 927,
+        "failure": null
+      },
+      {
+        "question": "Kaç sipariş olduğunu nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"none\",\"metric\":\"order_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 784,
+        "failure": null
+      },
+      {
+        "question": "İstanbul'daki satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"branch\",\"metric\":\"revenue\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 763,
+        "failure": null
+      },
+      {
+        "question": "İzmir'deki kaç siparişin geciktiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"branch\",\"metric\":\"delayed_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 811,
+        "failure": null
+      },
+      {
+        "question": "Ankara'daki kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"none\",\"metric\":\"delayed_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 779,
+        "failure": null
+      },
+      {
+        "question": "İzmir'deki satış tutarını şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"branch\",\"metric\":\"revenue\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 770,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki ortalama kaç günde teslim edildiğini şehre göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"city\",\"metric\":\"delivery_days\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "city",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 966,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"branch\",\"metric\":\"order_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 954,
+        "failure": null
+      },
+      {
+        "question": "Kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"none\",\"metric\":\"delayed_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 871,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İzmir'deki ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"branch\",\"metric\":\"delivery_days\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 1068,
+        "failure": null
+      },
+      {
+        "question": "İzmir'deki ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"İzmir\",\"group_by\":\"branch\",\"metric\":\"delivery_days\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "İzmir",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 910,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"none\",\"metric\":\"delayed_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 1058,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde Ankara'daki kaç siparişin geciktiğini nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"none\",\"metric\":\"delayed_count\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "none",
+          "metric": "delayed_count",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 1033,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki ortalama kaç günde teslim edildiğini nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"none\",\"metric\":\"delivery_days\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "none",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 977,
+        "failure": null
+      },
+      {
+        "question": "Satış tutarını nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"none\",\"metric\":\"revenue\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "none",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 727,
+        "failure": null
+      },
+      {
+        "question": "Satış tutarını şehre göre nedir?",
+        "expected": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"all\",\"group_by\":\"city\",\"metric\":\"revenue\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "all",
+          "group_by": "city",
+          "metric": "revenue",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 720,
+        "failure": null
+      },
+      {
+        "question": "Son 30 günde İstanbul'daki ortalama kaç günde teslim edildiğini şubeye göre nedir?",
+        "expected": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "raw": "{\"city\":\"İstanbul\",\"group_by\":\"branch\",\"metric\":\"delivery_days\",\"period\":\"last_30_days\"}",
+        "parsed": {
+          "city": "İstanbul",
+          "group_by": "branch",
+          "metric": "delivery_days",
+          "period": "last_30_days"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 948,
+        "failure": null
+      },
+      {
+        "question": "Ankara'daki kaç sipariş olduğunu şubeye göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"branch\",\"metric\":\"order_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "branch",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 782,
+        "failure": null
+      },
+      {
+        "question": "Ankara'daki kaç sipariş olduğunu şehre göre nedir?",
+        "expected": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "raw": "{\"city\":\"Ankara\",\"group_by\":\"city\",\"metric\":\"order_count\",\"period\":\"all\"}",
+        "parsed": {
+          "city": "Ankara",
+          "group_by": "city",
+          "metric": "order_count",
+          "period": "all"
+        },
+        "valid_json_plan": true,
+        "exact_plan": true,
+        "execution_equal": true,
+        "latency_ms": 785,
+        "failure": null
+      }
+    ]
+  }
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
 
-type Result = { ok: true; raw: string; plan: Record<string, string>; sql: string; rows: Array<{ segment: string; value: number }>; latency_ms: number }
+type Result = { ok: true; raw: string; plan: Record<string, string>; format_warning?: string; sql: string; rows: Array<{ segment: string; value: number }>; latency_ms: number }
   | { ok: false; raw: string; error: string; latency_ms: number };
 type Comparison = { question: string; base: Result; lora: Result; reference_date: string };
 type Status = { model: string; adapter_ready: boolean; reference_date: string; dataset: string; daily_demo_limit: number };
@@ -17,6 +17,7 @@ function ResultCard({ title, result }: { title: string; result: Result }) {
   return <section className="result-card">
     <div className="result-heading"><h3>{title}</h3><span>{result.latency_ms} ms</span></div>
     {result.ok ? <>
+      {result.format_warning && <div className="warning" role="status">{result.format_warning}</div>}
       <div className="label">Model çıktısı</div><pre>{JSON.stringify(result.plan, null, 2)}</pre>
       <div className="label">Derlenen salt okunur sorgu</div><code className="sql">{result.sql}</code>
       <div className="label">Veritabanı sonucu</div>
@@ -52,14 +53,14 @@ function App() {
     <div className="hero"><div className="eyebrow">TÜRKÇE ANALİTİK · AÇIK KARŞILAŞTIRMA</div><h1>Bir soru.<br /><em>İki model davranışı.</em></h1>
       <p>Türkçe iş sorusundan güvenli bir sorgu planı çıkarıyoruz. Aynı temel modeli LoRA adapterı olmadan ve adapterla çalıştırıp üretilen planı, SQL’i ve gerçek veri sonucunu yan yana gösteriyoruz.</p>
     </div>
-    <div className="notice"><strong>Deney sınırı</strong><span>Veriler tamamen sentetiktir. Referans tarihi {status?.reference_date ?? '2026-09-30'}. Son 30 gün bu tarihe göre hesaplanır. Model serbest SQL çalıştıramaz; yalnızca doğrulanan plan derlenir.</span></div>
+    <div className="notice"><strong>Deney sınırı</strong><span>Veriler tamamen sentetiktir. Referans tarihi {status?.reference_date ?? '2026-09-30'}. Son 30 gün bu tarihe göre hesaplanır. Model serbest SQL çalıştıramaz; yalnızca doğrulanan plan derlenir. Geçerli bir plan da soruyu yanlış yorumlayabilir.</span></div>
     <form onSubmit={compare} className="query-form"><label htmlFor="question">Operasyon sorusu</label><textarea id="question" value={question} maxLength={240} onChange={(e) => setQuestion(e.target.value)} rows={3} />
       <div className="form-foot"><div className="examples">{examples.map((example) => <button type="button" key={example} onClick={() => setQuestion(example)}>{example}</button>)}</div><button className="primary" type="submit" disabled={loading || !status?.adapter_ready}>{loading ? 'Karşılaştırılıyor…' : 'Modelleri karşılaştır →'}</button></div>
     </form>
     {!status?.adapter_ready && status && <div className="warning">Canlı LoRA adapterı henüz bağlı değil. Eğitim ve dağıtım tamamlandığında bu karşılaştırma etkinleşir.</div>}
     {error && <div className="warning" role="alert">{error}</div>}
     {comparison && <div className="results"><ResultCard title="Temel model" result={comparison.base} /><ResultCard title="LoRA uyarlanmış model" result={comparison.lora} /></div>}
-    <footer><span>Model: {status?.model ?? 'yükleniyor'} · Günlük karşılaştırma sınırı: {status?.daily_demo_limit ?? '…'}</span><span>Kaynak kod, eğitim ve değerlendirme raporu GitHub’da yayımlanacak.</span></footer>
+    <footer><span>Model: {status?.model ?? 'yükleniyor'} · Günlük karşılaştırma sınırı: {status?.daily_demo_limit ?? '…'}</span><a href="https://github.com/serkanazeri/tr-query-lora/blob/main/docs/results.md" target="_blank" rel="noreferrer">Kaynak kod ve değerlendirme raporu GitHub’da</a></footer>
   </main>;
 }
 

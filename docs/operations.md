@@ -1,15 +1,10 @@
 # Dağıtım, maliyet ve işletim
 
-## Planlanan yayın akışı
+## Yayın durumu
 
-1. Yerel eğitim, 96 soruluk sentetik test ve ayrı 12 soruluk doğal ifade raporunu doğrula.
-2. `python training/prepare_upload.py` ile Cloudflare LoRA kısıtlarını denetle ve ayrı yükleme klasörünü üret: desteklenen model, `r=8`, adapter dosyaları `<300 MB`, `adapter_config.json` içinde `model_type=gemma`.
-3. `wrangler ai finetune create @cf/google/gemma-2b-it-lora <name> artifacts/cloudflare-upload` ile adapterı yükle. Üretilen kimliği `LORA_ID` olarak kaydet.
-4. Ayrı `tr-query` D1 veritabanını oluştur ve sentetik veri migration'ını uygula. **Tamamlandı:** uzak veritabanında 18 sipariş doğrulandı.
-5. `npm run build` ve `wrangler deploy` çalıştır.
-6. HTTPS demo URL'sinde durum, üç gerçek model karşılaştırması, kota davranışı, mobil görünüm ve veritabanı sonucu doğrula. URL'yi README'ye ancak sonra ekle.
+İlk 240 adımlık ve ikinci 320 adımlık yerel eğitim tamamlandı. `training/prepare_upload.py` özgün adapterı değiştirmeden Cloudflare için iki dosyalı yükleme klasörü hazırladı. Yayındaki adapter kimliği `tr-query-gemma2b-v2-20261003`; önceki `tr-query-gemma2b-20261003` geri dönüş için korunur. D1 veritabanı `tr-query`, Worker URL'si [tr-query-lora.serkanazeri.workers.dev](https://tr-query-lora.serkanazeri.workers.dev). Uzak veritabanında 18 sentetik sipariş var. İkinci adapterla üç gerçek karşılaştırma, API durumu ve D1 sonuçları doğrulandı. Gözlenen yanlış planlar ve ek çıktı [sonuç raporunda](results.md) yer alır.
 
-Model eğitimi, adapter yükleme ve Worker yayını henüz tamamlanmadı. Config'de gerçek D1 kimliği ve boş `LORA_ID` vardır; uygulama adapter hazır olmadan karşılaştırmayı açmaz.
+Yeniden yayımlama: `npm run deploy`. Yeni adapter yüklemesi gerektiğinde `.venv/bin/python training/prepare_upload.py --adapter artifacts/lora-v2 --output artifacts/cloudflare-upload-v2` ardından `wrangler ai finetune create @cf/google/gemma-2b-it-lora <name> artifacts/cloudflare-upload-v2` çalıştırılır; `wrangler.jsonc` içindeki `LORA_ID` yeni isimle güncellenir. Kota dolmadan önce son dağıtım canlı URL'de doğrulanmalıdır.
 
 ## Ücretsiz sınırlar
 

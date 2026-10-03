@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './style.css';
 
 type Result = { ok: true; raw: string; plan: Record<string, string>; sql: string; rows: Array<{ segment: string; value: number }>; latency_ms: number }
-  | { ok: false; error: string; latency_ms: number };
+  | { ok: false; raw: string; error: string; latency_ms: number };
 type Comparison = { question: string; base: Result; lora: Result; reference_date: string };
 type Status = { model: string; adapter_ready: boolean; reference_date: string; dataset: string; daily_demo_limit: number };
 
@@ -22,6 +22,7 @@ function ResultCard({ title, result }: { title: string; result: Result }) {
       <div className="label">Veritabanı sonucu</div>
       <table><thead><tr><th>Grup</th><th>Değer</th></tr></thead><tbody>{result.rows.map((row, i) => <tr key={i}><td>{row.segment}</td><td>{row.value}</td></tr>)}</tbody></table>
     </> : <div className="result-error">{result.error}</div>}
+    {result.raw && <details><summary>Ham model çıktısı</summary><pre>{result.raw}</pre></details>}
   </section>;
 }
 

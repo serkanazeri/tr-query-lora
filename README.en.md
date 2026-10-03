@@ -16,6 +16,8 @@
 
 The synthetic dataset has 18 order records. The fixed reference date is 2026-09-30. The test split holds out sentence templates, but repeats the same metric, grouping, period, and city combinations. It does **not** prove transfer to an unseen customer schema or real operational impact.
 
+GitHub Actions checks plan tests, the app build, Python syntax, and deterministic dataset regeneration on every push and pull request. Gated model weights are not sent to CI; LoRA results come from the separate local evaluation.
+
 ## Run locally
 
 ```bash

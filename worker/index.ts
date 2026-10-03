@@ -43,6 +43,7 @@ app.post('/api/compare', async (c) => {
   const prompt = `${SYSTEM_PROMPT}\nSoru: ${question}`;
   const infer = async (adapter: boolean) => {
     const started = performance.now();
+    let raw = '';
     try {
       const output = await c.env.AI.run(c.env.BASE_MODEL, {
         messages: [{ role: 'user', content: prompt }],
@@ -50,13 +51,13 @@ app.post('/api/compare', async (c) => {
         temperature: 0,
         ...(adapter ? { lora: c.env.LORA_ID } : {}),
       });
-      const raw = output.response ?? '';
+      raw = output.response ?? '';
       const plan = parsePlan(raw);
       const { sql, binds } = compilePlan(plan, c.env.REFERENCE_DATE);
       const rows = await c.env.DB.prepare(sql).bind(...binds).all();
       return { ok: true, raw, plan, sql, rows: rows.results, latency_ms: Math.round(performance.now() - started) };
     } catch (error) {
-      return { ok: false, error: error instanceof Error ? error.message : 'Model veya veritabanı hatası', latency_ms: Math.round(performance.now() - started) };
+      return { ok: false, raw, error: error instanceof Error ? error.message : 'Model veya veritabanı hatası', latency_ms: Math.round(performance.now() - started) };
     }
   };
 

@@ -73,6 +73,8 @@ python3 training/generate_data.py
 
 `data/train.jsonl`, `valid.jsonl` ve `test.jsonl` deterministik olarak üretilir. Test cümle kalıpları eğitimden ayrıdır; aynı metrik/grup/dönem/şehir kombinasyonları ayrılmadığı için bu deney **yeni şemalara genelleme kanıtı değildir**. Veriler sentetiktir ve henüz insan incelemesinden geçmemiştir. Değerlendirme, geçerli plan oranını, tam plan doğruluğunu, sorgu sonucu eşitliğini ve gecikmeyi ölçer. Sonuçlar gerçek müşteri verisi veya saha etkisi diye sunulmaz.
 
+GitHub Actions her push ve PR'da plan testlerini, uygulama derlemesini, Python sözdizimini ve veri üretiminin tekrar üretilebilirliğini kontrol eder. Gated model ağırlıkları CI'a yüklenmez; LoRA sonuçları ayrı yerel değerlendirme ile raporlanır.
+
 ## Ücretsiz kullanım sınırı
 
 Eğitim yerel donanımda yapılır. Cloudflare Workers AI LoRA adapter kullanımı açık beta döneminde ücretsizdir; model çağrıları hesap genelindeki günlük ücretsiz AI kotasıyla sınırlıdır. Demo ayrıca günde en fazla 10 karşılaştırma kabul eder. Kota dolduğunda hata gösterir; ücretli sağlayıcıya otomatik geçmez. Beta ve ücretsiz katman şartları değişebilir. Ayrıntılar [işletim rehberinde](docs/operations.md).

@@ -1,0 +1,96 @@
+{"plan": {"city": "İstanbul", "group_by": "city", "metric": "delivery_days", "period": "all"}, "question": "İstanbul'daki teslimat süresi ortalamasını şehre göre raporla"}
+{"plan": {"city": "all", "group_by": "city", "metric": "order_count", "period": "all"}, "question": "Toplam sipariş adedini şehre göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "none", "metric": "delayed_count", "period": "all"}, "question": "İzmir'deki gecikmiş sipariş adedini raporla"}
+{"plan": {"city": "İstanbul", "group_by": "city", "metric": "delivery_days", "period": "last_30_days"}, "question": "Son 30 günde İstanbul'daki teslimat süresi ortalamasını şehre göre raporla"}
+{"plan": {"city": "İstanbul", "group_by": "none", "metric": "delivery_days", "period": "all"}, "question": "İstanbul'daki teslimat süresi ortalamasını raporla"}
+{"plan": {"city": "İstanbul", "group_by": "city", "metric": "delayed_count", "period": "last_30_days"}, "question": "Son 30 günde İstanbul'daki gecikmiş sipariş adedini şehre göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "city", "metric": "order_count", "period": "all"}, "question": "İzmir'deki toplam sipariş adedini şehre göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "branch", "metric": "delayed_count", "period": "last_30_days"}, "question": "Son 30 günde İzmir'deki gecikmiş sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "branch", "metric": "order_count", "period": "last_30_days"}, "question": "Son 30 günde Ankara'daki toplam sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "İstanbul", "group_by": "city", "metric": "delayed_count", "period": "all"}, "question": "İstanbul'daki gecikmiş sipariş adedini şehre göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "city", "metric": "delayed_count", "period": "last_30_days"}, "question": "Son 30 günde İzmir'deki gecikmiş sipariş adedini şehre göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "none", "metric": "delivery_days", "period": "all"}, "question": "Ankara'daki teslimat süresi ortalamasını raporla"}
+{"plan": {"city": "all", "group_by": "city", "metric": "delivery_days", "period": "all"}, "question": "Teslimat süresi ortalamasını şehre göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "none", "metric": "delayed_count", "period": "all"}, "question": "Ankara'daki gecikmiş sipariş adedini raporla"}
+{"plan": {"city": "İstanbul", "group_by": "city", "metric": "revenue", "period": "last_30_days"}, "question": "Son 30 günde İstanbul'daki toplam geliri şehre göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "none", "metric": "delayed_count", "period": "last_30_days"}, "question": "Son 30 günde Ankara'daki gecikmiş sipariş adedini raporla"}
+{"plan": {"city": "Ankara", "group_by": "city", "metric": "delivery_days", "period": "all"}, "question": "Ankara'daki teslimat süresi ortalamasını şehre göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "branch", "metric": "revenue", "period": "all"}, "question": "Ankara'daki toplam geliri şubeye göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "city", "metric": "revenue", "period": "all"}, "question": "Ankara'daki toplam geliri şehre göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "none", "metric": "revenue", "period": "all"}, "question": "İzmir'deki toplam geliri raporla"}
+{"plan": {"city": "İstanbul", "group_by": "branch", "metric": "order_count", "period": "last_30_days"}, "question": "Son 30 günde İstanbul'daki toplam sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "İstanbul", "group_by": "branch", "metric": "delayed_count", "period": "last_30_days"}, "question": "Son 30 günde İstanbul'daki gecikmiş sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "all", "group_by": "city", "metric": "order_count", "period": "last_30_days"}, "question": "Son 30 günde toplam sipariş adedini şehre göre raporla"}
+{"plan": {"city": "all", "group_by": "branch", "metric": "revenue", "period": "all"}, "question": "Toplam geliri şubeye göre raporla"}
+{"plan": {"city": "all", "group_by": "none", "metric": "order_count", "period": "all"}, "question": "Toplam sipariş adedini raporla"}
+{"plan": {"city": "İzmir", "group_by": "branch", "metric": "revenue", "period": "last_30_days"}, "question": "Son 30 günde İzmir'deki toplam geliri şubeye göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "none", "metric": "delayed_count", "period": "last_30_days"}, "question": "Son 30 günde İzmir'deki gecikmiş sipariş adedini raporla"}
+{"plan": {"city": "Ankara", "group_by": "city", "metric": "order_count", "period": "all"}, "question": "Ankara'daki toplam sipariş adedini şehre göre raporla"}
+{"plan": {"city": "all", "group_by": "branch", "metric": "order_count", "period": "last_30_days"}, "question": "Son 30 günde toplam sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "none", "metric": "delivery_days", "period": "last_30_days"}, "question": "Son 30 günde İzmir'deki teslimat süresi ortalamasını raporla"}
+{"plan": {"city": "İzmir", "group_by": "branch", "metric": "delivery_days", "period": "all"}, "question": "İzmir'deki teslimat süresi ortalamasını şubeye göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "branch", "metric": "delayed_count", "period": "last_30_days"}, "question": "Son 30 günde Ankara'daki gecikmiş sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "none", "metric": "order_count", "period": "last_30_days"}, "question": "Son 30 günde İzmir'deki toplam sipariş adedini raporla"}
+{"plan": {"city": "İzmir", "group_by": "branch", "metric": "revenue", "period": "all"}, "question": "İzmir'deki toplam geliri şubeye göre raporla"}
+{"plan": {"city": "İstanbul", "group_by": "none", "metric": "delivery_days", "period": "last_30_days"}, "question": "Son 30 günde İstanbul'daki teslimat süresi ortalamasını raporla"}
+{"plan": {"city": "İstanbul", "group_by": "city", "metric": "revenue", "period": "all"}, "question": "İstanbul'daki toplam geliri şehre göre raporla"}
+{"plan": {"city": "all", "group_by": "branch", "metric": "delayed_count", "period": "last_30_days"}, "question": "Son 30 günde gecikmiş sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "İstanbul", "group_by": "branch", "metric": "revenue", "period": "last_30_days"}, "question": "Son 30 günde İstanbul'daki toplam geliri şubeye göre raporla"}
+{"plan": {"city": "all", "group_by": "none", "metric": "delayed_count", "period": "last_30_days"}, "question": "Son 30 günde gecikmiş sipariş adedini raporla"}
+{"plan": {"city": "İstanbul", "group_by": "branch", "metric": "order_count", "period": "all"}, "question": "İstanbul'daki toplam sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "none", "metric": "order_count", "period": "all"}, "question": "Ankara'daki toplam sipariş adedini raporla"}
+{"plan": {"city": "all", "group_by": "city", "metric": "revenue", "period": "all"}, "question": "Toplam geliri şehre göre raporla"}
+{"plan": {"city": "İstanbul", "group_by": "city", "metric": "order_count", "period": "all"}, "question": "İstanbul'daki toplam sipariş adedini şehre göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "branch", "metric": "delivery_days", "period": "last_30_days"}, "question": "Son 30 günde Ankara'daki teslimat süresi ortalamasını şubeye göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "none", "metric": "order_count", "period": "all"}, "question": "İzmir'deki toplam sipariş adedini raporla"}
+{"plan": {"city": "Ankara", "group_by": "branch", "metric": "order_count", "period": "all"}, "question": "Ankara'daki toplam sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "all", "group_by": "none", "metric": "revenue", "period": "last_30_days"}, "question": "Son 30 günde toplam geliri raporla"}
+{"plan": {"city": "Ankara", "group_by": "none", "metric": "revenue", "period": "all"}, "question": "Ankara'daki toplam geliri raporla"}
+{"plan": {"city": "all", "group_by": "none", "metric": "delayed_count", "period": "all"}, "question": "Gecikmiş sipariş adedini raporla"}
+{"plan": {"city": "Ankara", "group_by": "city", "metric": "order_count", "period": "last_30_days"}, "question": "Son 30 günde Ankara'daki toplam sipariş adedini şehre göre raporla"}
+{"plan": {"city": "İstanbul", "group_by": "branch", "metric": "delivery_days", "period": "last_30_days"}, "question": "Son 30 günde İstanbul'daki teslimat süresi ortalamasını şubeye göre raporla"}
+{"plan": {"city": "İstanbul", "group_by": "none", "metric": "order_count", "period": "all"}, "question": "İstanbul'daki toplam sipariş adedini raporla"}
+{"plan": {"city": "İzmir", "group_by": "branch", "metric": "order_count", "period": "all"}, "question": "İzmir'deki toplam sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "branch", "metric": "delivery_days", "period": "last_30_days"}, "question": "Son 30 günde İzmir'deki teslimat süresi ortalamasını şubeye göre raporla"}
+{"plan": {"city": "İstanbul", "group_by": "none", "metric": "order_count", "period": "last_30_days"}, "question": "Son 30 günde İstanbul'daki toplam sipariş adedini raporla"}
+{"plan": {"city": "İzmir", "group_by": "city", "metric": "delivery_days", "period": "last_30_days"}, "question": "Son 30 günde İzmir'deki teslimat süresi ortalamasını şehre göre raporla"}
+{"plan": {"city": "all", "group_by": "none", "metric": "revenue", "period": "all"}, "question": "Toplam geliri raporla"}
+{"plan": {"city": "İzmir", "group_by": "city", "metric": "revenue", "period": "last_30_days"}, "question": "Son 30 günde İzmir'deki toplam geliri şehre göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "branch", "metric": "revenue", "period": "last_30_days"}, "question": "Son 30 günde Ankara'daki toplam geliri şubeye göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "none", "metric": "delivery_days", "period": "all"}, "question": "İzmir'deki teslimat süresi ortalamasını raporla"}
+{"plan": {"city": "İstanbul", "group_by": "branch", "metric": "revenue", "period": "all"}, "question": "İstanbul'daki toplam geliri şubeye göre raporla"}
+{"plan": {"city": "İstanbul", "group_by": "branch", "metric": "delayed_count", "period": "all"}, "question": "İstanbul'daki gecikmiş sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "İstanbul", "group_by": "none", "metric": "revenue", "period": "last_30_days"}, "question": "Son 30 günde İstanbul'daki toplam geliri raporla"}
+{"plan": {"city": "all", "group_by": "branch", "metric": "delivery_days", "period": "all"}, "question": "Teslimat süresi ortalamasını şubeye göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "none", "metric": "delivery_days", "period": "last_30_days"}, "question": "Son 30 günde Ankara'daki teslimat süresi ortalamasını raporla"}
+{"plan": {"city": "İstanbul", "group_by": "none", "metric": "delayed_count", "period": "last_30_days"}, "question": "Son 30 günde İstanbul'daki gecikmiş sipariş adedini raporla"}
+{"plan": {"city": "Ankara", "group_by": "city", "metric": "delayed_count", "period": "all"}, "question": "Ankara'daki gecikmiş sipariş adedini şehre göre raporla"}
+{"plan": {"city": "all", "group_by": "city", "metric": "delayed_count", "period": "all"}, "question": "Gecikmiş sipariş adedini şehre göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "branch", "metric": "order_count", "period": "last_30_days"}, "question": "Son 30 günde İzmir'deki toplam sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "branch", "metric": "delivery_days", "period": "all"}, "question": "Ankara'daki teslimat süresi ortalamasını şubeye göre raporla"}
+{"plan": {"city": "all", "group_by": "branch", "metric": "revenue", "period": "last_30_days"}, "question": "Son 30 günde toplam geliri şubeye göre raporla"}
+{"plan": {"city": "all", "group_by": "city", "metric": "revenue", "period": "last_30_days"}, "question": "Son 30 günde toplam geliri şehre göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "branch", "metric": "delayed_count", "period": "all"}, "question": "Ankara'daki gecikmiş sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "İstanbul", "group_by": "city", "metric": "order_count", "period": "last_30_days"}, "question": "Son 30 günde İstanbul'daki toplam sipariş adedini şehre göre raporla"}
+{"plan": {"city": "all", "group_by": "none", "metric": "delivery_days", "period": "last_30_days"}, "question": "Son 30 günde teslimat süresi ortalamasını raporla"}
+{"plan": {"city": "all", "group_by": "city", "metric": "delivery_days", "period": "last_30_days"}, "question": "Son 30 günde teslimat süresi ortalamasını şehre göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "city", "metric": "revenue", "period": "last_30_days"}, "question": "Son 30 günde Ankara'daki toplam geliri şehre göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "city", "metric": "revenue", "period": "all"}, "question": "İzmir'deki toplam geliri şehre göre raporla"}
+{"plan": {"city": "all", "group_by": "none", "metric": "delivery_days", "period": "all"}, "question": "Teslimat süresi ortalamasını raporla"}
+{"plan": {"city": "Ankara", "group_by": "city", "metric": "delayed_count", "period": "last_30_days"}, "question": "Son 30 günde Ankara'daki gecikmiş sipariş adedini şehre göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "city", "metric": "order_count", "period": "last_30_days"}, "question": "Son 30 günde İzmir'deki toplam sipariş adedini şehre göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "none", "metric": "order_count", "period": "last_30_days"}, "question": "Son 30 günde Ankara'daki toplam sipariş adedini raporla"}
+{"plan": {"city": "İzmir", "group_by": "city", "metric": "delayed_count", "period": "all"}, "question": "İzmir'deki gecikmiş sipariş adedini şehre göre raporla"}
+{"plan": {"city": "all", "group_by": "branch", "metric": "delivery_days", "period": "last_30_days"}, "question": "Son 30 günde teslimat süresi ortalamasını şubeye göre raporla"}
+{"plan": {"city": "all", "group_by": "branch", "metric": "delayed_count", "period": "all"}, "question": "Gecikmiş sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "all", "group_by": "city", "metric": "delayed_count", "period": "last_30_days"}, "question": "Son 30 günde gecikmiş sipariş adedini şehre göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "branch", "metric": "delayed_count", "period": "all"}, "question": "İzmir'deki gecikmiş sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "city", "metric": "delivery_days", "period": "last_30_days"}, "question": "Son 30 günde Ankara'daki teslimat süresi ortalamasını şehre göre raporla"}
+{"plan": {"city": "Ankara", "group_by": "none", "metric": "revenue", "period": "last_30_days"}, "question": "Son 30 günde Ankara'daki toplam geliri raporla"}
+{"plan": {"city": "all", "group_by": "branch", "metric": "order_count", "period": "all"}, "question": "Toplam sipariş adedini şubeye göre raporla"}
+{"plan": {"city": "İstanbul", "group_by": "none", "metric": "delayed_count", "period": "all"}, "question": "İstanbul'daki gecikmiş sipariş adedini raporla"}
+{"plan": {"city": "İstanbul", "group_by": "branch", "metric": "delivery_days", "period": "all"}, "question": "İstanbul'daki teslimat süresi ortalamasını şubeye göre raporla"}
+{"plan": {"city": "all", "group_by": "none", "metric": "order_count", "period": "last_30_days"}, "question": "Son 30 günde toplam sipariş adedini raporla"}
+{"plan": {"city": "İzmir", "group_by": "city", "metric": "delivery_days", "period": "all"}, "question": "İzmir'deki teslimat süresi ortalamasını şehre göre raporla"}
+{"plan": {"city": "İzmir", "group_by": "none", "metric": "revenue", "period": "last_30_days"}, "question": "Son 30 günde İzmir'deki toplam geliri raporla"}
+{"plan": {"city": "İstanbul", "group_by": "none", "metric": "revenue", "period": "all"}, "question": "İstanbul'daki toplam geliri raporla"}

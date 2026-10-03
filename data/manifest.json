@@ -1,0 +1,11 @@
+{
+  "seed": 20261003,
+  "counts": {
+    "train": 768,
+    "valid": 96,
+    "test": 96
+  },
+  "synthetic": true,
+  "human_reviewed": false,
+  "split_method": "held-out sentence frames; metric/group/period/city combinations recur"
+}

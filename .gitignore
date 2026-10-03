@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.venv/
+.wrangler/
+.dev.vars
+artifacts/
+*.pyc
+__pycache__/

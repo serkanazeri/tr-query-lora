@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tr-query-lora",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-03",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  "ai": { "binding": "AI" },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "tr-query",
+    "database_id": "1eda3e4a-6184-4f14-8d44-bb6bda249d5a",
+    "migrations_dir": "migrations"
+  }],
+  "vars": {
+    "BASE_MODEL": "@cf/google/gemma-2b-it-lora",
+    "LORA_ID": "",
+    "REFERENCE_DATE": "2026-09-30"
+  }
+}
